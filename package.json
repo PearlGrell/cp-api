@@ -1,0 +1,14 @@
+{
+  "name": "hgv2_server",
+  "module": "index.ts",
+  "scripts": {
+    "start": "bun --watch api/index.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "express": "^4.21.1",
+    "node-fetch-commonjs": "^3.3.2",
+    "node-html-parser": "^6.1.13",
+    "vercel": "^39.0.2"
+  }
+}
