@@ -1,4 +1,3 @@
- 
 const express = require('express');
 
 import {fetchCodeChefData} from './functions/codechef';
