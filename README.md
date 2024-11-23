@@ -1,101 +1,105 @@
-# HGV2 Server API
 
-This API allows you to fetch user data from competitive programming platforms such as Codeforces, CodeChef, GeeksForGeeks, and LeetCode.
+Competitive Programming API
+Welcome to the Competitive Programming API! This API allows you to fetch user data, contest information, and standings from popular competitive programming platforms like Codeforces, CodeChef, GeeksForGeeks, and LeetCode.
 
-## Base URL
+Features
+Retrieve user data from supported platforms.
+Access contest standings (finished, ongoing, or latest).
+Fetch upcoming contests for a specific platform.
+Endpoints
+1. Fetch User Data
+GET /fetch/:platform/:username
+Fetch user data from a specific platform.
 
-https://hgv2-server-two.vercel.app
-
----
-
-## Endpoints
-
-### Fetch Codeforces User Data
-
-**Endpoint**:  
-GET /fetch/codeforces/:username
-
-**Description**:  
-Fetches user data from Codeforces.
-
-**Path Parameter**:  
-:username - The username on Codeforces.
-
-**Example**:  
-GET /fetch/codeforces/john_doe
-
----
-
-### Fetch CodeChef User Data
-
-**Endpoint**:  
-GET /fetch/codechef/:username
-
-**Description**:  
-Fetches user data from CodeChef.
-
-**Path Parameter**:  
-:username - The username on CodeChef.
-
-**Example**:  
-GET /fetch/codechef/john_doe
-
----
-
-### Fetch GeeksForGeeks User Data
-
-**Endpoint**:  
-GET /fetch/geeksforgeeks/:username
-
-**Description**:  
-Fetches user data from GeeksForGeeks.
-
-**Path Parameter**:  
-:username - The username on GeeksForGeeks.
-
-**Example**:  
-GET /fetch/geeksforgeeks/john_doe
-
----
-
-### Fetch LeetCode User Data
-
-**Endpoint**:  
-GET /fetch/leetcode/:username
-
-**Description**:  
-Fetches user data from LeetCode.
-
-**Path Parameter**:  
-:username - The username on LeetCode.
-
-**Example**:  
-GET /fetch/leetcode/john_doe
-
----
-
-### Fetch All User Data
-
-**Endpoint**:  
+Path Parameters:
+platform: The platform name (e.g., codechef, codeforces).
+username: The username of the user.
+Example:
+bash
+Copy code
+/fetch/codechef/aryan_trivedi
+2. Fetch User Data From All Platforms
 GET /fetch-all/:username
+Fetch user data from all supported platforms.
 
-**Description**:  
-Fetches user data from all supported platforms for the given username.
+Path Parameters:
+username: The username of the user.
+Example:
+sql
+Copy code
+/fetch-all/aryan_trivedi
+3. Fetch Contest Standings
+POST /contest/:platform
+Fetch contest standings for a given platform and contest ID.
 
-**Path Parameter**:  
-:username - The username to fetch data for.
+Path Parameters:
 
-**Example**:  
-GET /fetch-all/john_doe
+platform: The platform name (e.g., codeforces, codechef).
+Body:
 
----
+json
+Copy code
+{
+    "usernames": ["_a_u_r_o_r_a_", "SadSock", "nguyenkhangninh99", "haminh1092005", "aka26nsh"],
+    "contestId": 2037
+}
+Example:
 
-## Notes
+bash
+Copy code
+/contest/codeforces
+4. Fetch Latest Finished Contest Standings
+POST /contest/:platform/latest
+Fetch the standings of the latest finished contest for a specific platform.
 
-- Replace :username with the actual username on the respective platforms.
-- Ensure the username exists on the platform to receive valid data.
-- For any issues or feedback, feel free to contact the API maintainers.
+Path Parameters:
 
----
+platform: The platform name (e.g., codeforces, codechef).
+Body:
 
-Happy Coding! 🎉
+json
+Copy code
+{
+    "usernames": ["_a_u_r_o_r_a_", "SadSock", "nguyenkhangninh99", "haminh1092005", "aka26nsh"]
+}
+Example:
+
+bash
+Copy code
+/contest/codeforces/latest
+5. Fetch Ongoing Contest Standings
+POST /contest/:platform/current
+Fetch the standings of an ongoing contest for a specific platform.
+
+Path Parameters:
+
+platform: The platform name (e.g., codeforces, codechef).
+Body:
+
+json
+Copy code
+{
+    "usernames": ["_a_u_r_o_r_a_", "SadSock", "nguyenkhangninh99", "haminh1092005", "aka26nsh"]
+}
+Example:
+
+bash
+Copy code
+/contest/codeforces/current
+6. Fetch Upcoming Contests
+GET /contest/:platform/upcoming
+Fetch upcoming contests for a specific platform.
+
+Path Parameters:
+
+platform: The platform name (e.g., codeforces, codechef).
+Example:
+
+bash
+Copy code
+/contest/codeforces/upcoming
+Example Platforms
+Codeforces
+CodeChef
+GeeksForGeeks
+LeetCode
