@@ -9,8 +9,84 @@ const app = express();
 
 app.use(express.json());
 
+//
 app.get('/', async (request, response) => {
-    response.send('Hello World!');
+    response.json({
+        message: "Welcome to the Competitive Programming API!",
+        description: "This API provides data and contest information from platforms like Codeforces, CodeChef, GeeksForGeeks, and LeetCode.",
+        endpoints: [
+            {
+                path: "/fetch/:platform/:username",
+                method: "GET",
+                description: "Fetch user data from a specific platform.",
+                example: "/fetch/codechef/aryan_trivedi"
+            },
+            {
+                path: "/fetch-all/:username",
+                method: "GET",
+                description: "Fetch user data from all supported platforms.",
+                example: "/fetch-all/aryan_trivedi"
+            },
+            {
+                path: "/contest/:platform",
+                method: "POST",
+                description: "Fetch contest standings for a given platform and contest ID.",
+                example: {
+                    path: "/contest/codeforces",
+                    body: {
+                        usernames: [
+                                "_a_u_r_o_r_a_",
+                                "SadSock",
+                                "nguyenkhangninh99",
+                                "haminh1092005",
+                                "aka26nsh"
+                            ],
+                        contestId: 2037
+                    }
+                }
+            },
+            {
+                path: "/contest/:platform/latest",
+                method: "POST",
+                description: "Fetch the latest finished contest standings for a given platform.",
+                example: {
+                    path: "/contest/codeforces/latest",
+                    body: {
+                        usernames: [
+                                "_a_u_r_o_r_a_",
+                                "SadSock",
+                                "nguyenkhangninh99",
+                                "haminh1092005",
+                                "aka26nsh"
+                            ]
+                    }
+                }
+            },
+            {
+                path: "/contest/:platform/current",
+                method: "POST",
+                description: "Fetch ongoing contest standings for a given platform.",
+                example: {
+                    path: "/contest/codeforces/current",
+                    body: {
+                        usernames: [
+                                "_a_u_r_o_r_a_",
+                                "SadSock",
+                                "nguyenkhangninh99",
+                                "haminh1092005",
+                                "aka26nsh"
+                            ]
+                    }
+                }
+            },
+            {
+                path: "/contest/:platform/upcoming",
+                method: "GET",
+                description: "Fetch upcoming contests for a specific platform.",
+                example: "/contest/codeforces/upcoming"
+            }
+        ]
+    });
 });
 
 // Fetch data from the platform based on the platform and username

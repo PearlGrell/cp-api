@@ -153,7 +153,7 @@ exports.codeforcesUpcomingContest = async () => {
           const contestDetails = upcomingContests.map(contest => ({
             contestId: contest.id,
             contestName: contest.name,
-            startTime: new Date(contest.startTimeSeconds * 1000).toLocaleString(), // Convert to readable date
+            startTime: new Date(contest.startTimeSeconds * 1000).toLocaleString(),
         }));
 
         return contestDetails;
