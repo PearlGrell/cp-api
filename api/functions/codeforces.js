@@ -150,12 +150,13 @@ exports.codeforcesUpcomingContest = async () => {
               return { message: 'No upcoming contests found.' };
           }
   
-          const nextContest = upcomingContests[0];
-          return {
-              contestId: nextContest.id,
-              contestName: nextContest.name,
-              startTime: nextContest.startTimeSeconds,
-          };
+          const contestDetails = upcomingContests.map(contest => ({
+            contestId: contest.id,
+            contestName: contest.name,
+            startTime: new Date(contest.startTimeSeconds * 1000).toLocaleString(), // Convert to readable date
+        }));
+
+        return contestDetails;
       } else {
           return { message: 'Contest list could not be fetched.' };
       }
