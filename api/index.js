@@ -1,11 +1,13 @@
 const express = require('express');
 
 import {fetchCodeChefData} from './functions/codechef';
-import {fetchCodeforcesData} from './functions/codeforces';
+import {fetchCodeforcesData, codeforcesContest, codeforcesLatestContest, codeforcesCurrentContest, codeforcesUpcomingContest} from './functions/codeforces';
 import {fetchGeeksForGeeksData} from './functions/geeksforgeeks';
 import {fetchLeetCodeData} from './functions/leetcode';
 
 const app = express();
+
+app.use(express.json());
 
 app.get('/', async (request, response) => {
     response.send('Hello World!');
@@ -30,7 +32,7 @@ app.get('/fetch/:platform/:username', async (request, response) => {
     } else {
         return response.json({ message: 'Invalid platform' })
     }
-})
+});
 
 // Fetch data from all platforms based on the username
 app.get('/fetch-all/:username', async (request, response) => {
@@ -42,6 +44,67 @@ app.get('/fetch-all/:username', async (request, response) => {
     const leetCodeData = await fetchLeetCodeData(username)
 
     return response.json({ codeforces: codeforcesData, geeksforgeeks: geeksForGeeksData, codechef: codeChefData, leetcode: leetCodeData })
+});
+
+// Fetch contest data from the platform based on the platform and contestId
+app.post('/contest/:platform', async (request, response) => {
+    const { platform } = request.params
+
+    const {usernames, contestId} = request.body
+
+    if (platform === 'codeforces') {
+        const data = await codeforcesContest(
+            usernames,
+            contestId
+        )
+        return response.json(data)
+    } else {
+        return response.json({ message: 'Invalid platform' })
+    }
+});
+
+// Fetch latest contest data from the platform based on the platform
+app.post('/contest/:platform/latest', async (request, response) => {
+    const { platform } = request.params
+
+    const {usernames} = request.body
+
+    if (platform === 'codeforces') {
+        const data = await codeforcesLatestContest(
+            usernames
+        )
+        return response.json(data)
+    } else {
+        return response.json({ message: 'Invalid platform' })
+    }
+});
+
+// Fetch ongoing contest data from the platform based on the platform
+app.post('/contest/:platform/current', async (request, response) => {
+    const { platform } = request.params
+
+    const {usernames} = request.body
+
+    if (platform === 'codeforces') {
+        const data = await codeforcesCurrentContest(
+            usernames
+        )
+        return response.json(data)
+    } else {
+        return response.json({ message: 'Invalid platform' })
+    }
+});
+
+//Fetch upcoming contest data from the platform based on the platform
+app.get('/contest/:platform/upcoming', async (request, response) => {
+    const { platform } = request.params
+
+    if (platform === 'codeforces') {
+        const data = await codeforcesUpcomingContest()
+        return response.json(data)
+    } else {
+        return response.json({ message: 'Invalid platform' })
+    }
 });
 
 app.listen(3000, () => {
