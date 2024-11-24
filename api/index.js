@@ -34,13 +34,7 @@ app.get('/', async (request, response) => {
                 example: {
                     path: "/contest/codeforces",
                     body: {
-                        usernames: [
-                                "_a_u_r_o_r_a_",
-                                "SadSock",
-                                "nguyenkhangninh99",
-                                "haminh1092005",
-                                "aka26nsh"
-                            ],
+                        usernames: "_a_u_r_o_r_a_;SadSock;nguyenkhangninh99;haminh1092005;aka26nsh",
                         contestId: 2037
                     }
                 }
@@ -52,13 +46,7 @@ app.get('/', async (request, response) => {
                 example: {
                     path: "/contest/codeforces/latest",
                     body: {
-                        usernames: [
-                                "_a_u_r_o_r_a_",
-                                "SadSock",
-                                "nguyenkhangninh99",
-                                "haminh1092005",
-                                "aka26nsh"
-                            ]
+                        usernames: "_a_u_r_o_r_a_;SadSock;nguyenkhangninh99;haminh1092005;aka26nsh"
                     }
                 }
             },
@@ -69,13 +57,7 @@ app.get('/', async (request, response) => {
                 example: {
                     path: "/contest/codeforces/current",
                     body: {
-                        usernames: [
-                                "_a_u_r_o_r_a_",
-                                "SadSock",
-                                "nguyenkhangninh99",
-                                "haminh1092005",
-                                "aka26nsh"
-                            ]
+                        usernames: "_a_u_r_o_r_a_;SadSock;nguyenkhangninh99;haminh1092005;aka26nsh"
                     }
                 }
             },

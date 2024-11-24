@@ -38,7 +38,7 @@ exports.fetchCodeforcesData = async(username) =>{
 
 exports.codeforcesContest = async (usernames, contestId) => {
   const baseUrl = 'https://codeforces.com/api';
-  const url = `${baseUrl}/contest.standings?contestId=${contestId}&handles=${usernames.join(';')}`;
+  const url = `${baseUrl}/contest.standings?contestId=${contestId}&handles=${usernames}`;
   
   try {
       const response = await fetch(url);
